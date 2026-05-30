@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOMNUS: THE LOOP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script data-goatcounter="https://arnoldee.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+    <header class="hero">
+        <img src="images/logo.png" alt="SOMNUS: THE LOOP" class="hero-logo">
+    </header>
+
+    <div class="below-hero">
+        <div class="bg-stack" aria-hidden="true">
+            <img class="bg-img" src="images/cover.jpg" alt="">
+            <img class="bg-img" src="images/bg.jpg" alt="">
+        </div>
+
+        <div class="page">
+
+        <main class="card">
+            <div class="card-inner">
+
+                <section class="intro">
+                    <div class="intro-text">
+                        <h2 class="intro-title">КОГДА ПРОСНЁШЬСЯ</h2>
+                        <p class="intro-tagline">Смерть — не конец. Выбор — не свобода.</p>
+                        <a href="#" class="btn" aria-label="Войти в Петлю">
+                            <img src="images/button.png" alt="Войти в Петлю">
+                        </a>
+                    </div>
+                    <div class="intro-cover">
+                        <img src="images/cover.jpg" alt="Somnus: The Loop">
+                    </div>
+                </section>
+
+                <section class="story">
+                    <p><strong>Главный герой засыпает за рулём в лесу — и проваливается в сон. В мёртвый мир, из которого нельзя проснуться.</strong></p>
+
+                    <p>Ты просыпаешься в мёртвом мире.</p>
+
+                    <p>Над головой — не небо, а вязкая пустота. Вокруг — искажённое средневековье, где дома дышат, деревья охотятся, а книги могут свести с ума. Здесь нет ни одного живого существа, способного произнести слово. Только монстры. Тени. И вечный, давящий страх.</p>
+
+                    <p>Но ты не один.</p>
+
+                    <p>Где-то в этом кошмаре живут две женщины. Принцессы, которые не помнят своего прошлого. Одна прячется в храме, заросшем живыми деревьями. Другая правит тенями в мрачном замке на мёртвом холме.</p>
+
+                    <p>Тебя связывает с ними нечто большее, чем случайность.</p>
+
+                    <p>Каждый раз, умирая, ты возвращаешься назад во времени. Ты помнишь всё — боль, страх, ошибки. Они — нет. С каждой петлёй ты становишься сильнее. Холоднее. Безжалостнее.</p>
+
+                    <p>Но есть цена.</p>
+
+                    <p>О выходе из этого мира знают только старые книги. Их страницы хранят тайну — но и безумие тоже. Читать опасно. Не читать — остаться здесь навсегда.</p>
+
+                    <p>Сможешь ли ты найти дверь? И захочешь ли открыть её, когда узнаешь, что ждёт по ту сторону?</p>
+                </section>
+
+                <section class="gallery">
+                    <h3 class="gallery-title">Кадры из игры</h3>
+                    <div class="gallery-grid">
+                        <figure class="shot">
+                            <img src="images/screen1.jpg" alt="Где я?">
+                        </figure>
+                        <figure class="shot">
+                            <img src="images/screen2.jpg" alt="Ты... тоже потерялся?">
+                        </figure>
+                        <figure class="shot">
+                            <img src="images/screen3.jpg" alt="Кто ты такой?">
+                        </figure>
+                    </div>
+                </section>
+
+                <footer class="social">
+                    <h3 class="social-title">Соцсети</h3>
+                    <ul class="social-list">
+                        <li><a href="#">Patreon</a></li>
+                        <li><a href="#">Boosty</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                    <p class="copy">Прототип сайта. Все права на петлю принадлежат спящему водителю. 2026.</p>
+                </footer>
+
+            </div>
+        </main>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const shots = document.querySelectorAll('.shot img');
+            let current = null;
+
+            function close() {
+                if (!current) return;
+                current.classList.remove('open');
+                const el = current;
+                current = null;
+                setTimeout(() => el.remove(), 250);
+            }
+
+            function open(src, alt) {
+                if (current) return;
+                const overlay = document.createElement('div');
+                overlay.className = 'lightbox';
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = alt || '';
+                overlay.appendChild(img);
+                overlay.addEventListener('click', close);
+                document.body.appendChild(overlay);
+                current = overlay;
+                requestAnimationFrame(() => overlay.classList.add('open'));
+            }
+
+            shots.forEach(img => {
+                img.addEventListener('click', () => open(img.src, img.alt));
+            });
+
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') close();
+            });
+        })();
+    </script>
+</body>
+</html>
